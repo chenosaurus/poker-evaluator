@@ -3,11 +3,13 @@
 Poker hand evaluator using the Two Plus Two alogorithm and lookup table.
 The lookup table HandRanks.dat is included in the module.
 
-to install:
+Hands can be evaluated by comparing the handType then the handRank to determine the better hand.
+
+#to install:
 
 npm install poker-evaluator
 
-Usage:
+#Usage:
 
 ```js
 var PokerEvaluator = require("poker-evaluator");
