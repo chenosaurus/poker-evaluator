@@ -1,13 +1,23 @@
 ##Poker Hand Evaluator
 
-Usage:
+Poker hand evaluator using the Two Plus Two alogorithm and lookup table.
+
+--to install:
+
+npm install poker-evaluator
+
+--Usage:
 
 ```js
-var Hand = require("./index").Hand;
+var PokerEvaluator = require("poker-evaluator");
+var evaluator = new PokerEvaluator("HandRanks.dat");
 
-var PokerUtil = require("./index").PokerUtil;
+var res = evaluator.evalHand(["As", "Ks", "Qs", "Js", "Ts", "3c", "5h"]);
 
-var hand = Hand.makeHand("3h", "4h", "5h", "6h", "7h", "8h", "9d");
+//  res = {
+//    handType: 9,
+//    handRank: 10,
+//    handName: 'straight flush'
+//  }
 
-PokerUtil.evalHand(hand);
 ```

@@ -1,7 +1,7 @@
 {
   "name": "poker-evaluator",
-  "version": "0.0.2",
-  "description": "A library to evaluate poker 5 to 7 card poker hands",
+  "version": "0.0.3",
+  "description": "A library to evaluate 7 card poker hands",
   "homepage": "http://github.com/chenosaurus/poker-evaluator",
   "keywords": ["poker", "games"],
   "author": "David Chen <chenosaurus@gmail.com>",
@@ -12,7 +12,6 @@
   "dependencies": {
   },
   "devDependencies": {
-    "microtime": "0.1.3-1"
   },
   "main": "index",
   "engines": {
