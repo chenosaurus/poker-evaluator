@@ -1,11 +1,12 @@
 var PokerEvaluator = require("../index");
-var evaluator = new PokerEvaluator("../HandRanks.dat");
+var path = require('path');
+var evaluator = new PokerEvaluator(path.join(__dirname, "../HandRanks.dat"));
 
 function enumerateAllHands() {
   var u0, u1, u2, u3, u4, u5;
   var c0, c1, c2, c3, c4, c5, c6;
   var handTypeSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var count = 0; 
+  var count = 0;
 
   console.log("Enumerating and evaluating all 133,784,560 possible 7-card poker hands...\n");
 
@@ -44,7 +45,7 @@ function enumerateAllHands() {
   console.log("Trips:            %d\n", handTypeSum[4]);
   console.log("Straight:         %d\n", handTypeSum[5]);
   console.log("Flush:            %d\n", handTypeSum[6]);
-  console.log("Full House:       %d\n", handTypeSum[7]); 
+  console.log("Full House:       %d\n", handTypeSum[7]);
   console.log("Quads:            %d\n", handTypeSum[8]);
   console.log("Straight Flush:   %d\n", handTypeSum[9]);
 
