@@ -17,9 +17,12 @@
   },
   "dependencies": {
   },
+  "scripts": {
+    "test": "node test/speedtest.js"
+  },
   "devDependencies": {
   },
-  "main": "index",
+  "main": "./lib/PokerEvaluator.js",
   "engines": {
     "node": ">= 0.6.0"
   }

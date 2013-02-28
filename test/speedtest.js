@@ -1,6 +1,6 @@
-var PokerEvaluator = require("../index");
-var path = require('path');
-var evaluator = new PokerEvaluator(path.join(__dirname, "../HandRanks.dat"));
+var evaluator = require("..");
+var path = require("path");
+var assert = require("assert");
 
 function enumerateAllHands() {
   var u0, u1, u2, u3, u4, u5;
@@ -53,11 +53,9 @@ function enumerateAllHands() {
   var testCount = 0;
   for (var index = 0; index < 10; index++)
     testCount += handTypeSum[index];
-  if (testCount != count || count != 133784560 || handTypeSum[0] != 0)
-  {
-    console.log("\nERROR!");
-    return;
-  }
+  assert(testCount === count);
+  assert(count === 133784560);
+  assert(handTypeSum[0] === 0);
 
   console.log("\nEnumerated " + count + " hands in " + (endTime - startTime) + " milliseconds!\n");
 }
