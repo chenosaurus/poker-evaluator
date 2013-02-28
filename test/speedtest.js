@@ -60,4 +60,13 @@ function enumerateAllHands() {
   console.log("\nEnumerated " + count + " hands in " + (endTime - startTime) + " milliseconds!\n");
 }
 
+assert.equal(evaluator.CARDS['as'], 52);
+assert.equal(evaluator.HANDTYPES.length, 10);
+assert.deepEqual(evaluator.eval([1, 2, 3, 4, 5]), {
+  handType: 8,
+  handName: 'four of a kind',
+  value: 32769,
+  handRank: 1
+});
+
 enumerateAllHands();
