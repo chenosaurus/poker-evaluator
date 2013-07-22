@@ -1,11 +1,12 @@
-var PokerEvaluator = require("../index");
-var evaluator = new PokerEvaluator("../HandRanks.dat");
+var evaluator = require("..");
+var path = require("path");
+var assert = require("assert");
 
 function enumerateAllHands() {
   var u0, u1, u2, u3, u4, u5;
   var c0, c1, c2, c3, c4, c5, c6;
   var handTypeSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var count = 0; 
+  var count = 0;
 
   console.log("Enumerating and evaluating all 133,784,560 possible 7-card poker hands...\n");
 
@@ -44,7 +45,7 @@ function enumerateAllHands() {
   console.log("Trips:            %d\n", handTypeSum[4]);
   console.log("Straight:         %d\n", handTypeSum[5]);
   console.log("Flush:            %d\n", handTypeSum[6]);
-  console.log("Full House:       %d\n", handTypeSum[7]); 
+  console.log("Full House:       %d\n", handTypeSum[7]);
   console.log("Quads:            %d\n", handTypeSum[8]);
   console.log("Straight Flush:   %d\n", handTypeSum[9]);
 
@@ -52,13 +53,20 @@ function enumerateAllHands() {
   var testCount = 0;
   for (var index = 0; index < 10; index++)
     testCount += handTypeSum[index];
-  if (testCount != count || count != 133784560 || handTypeSum[0] != 0)
-  {
-    console.log("\nERROR!");
-    return;
-  }
+  assert(testCount === count);
+  assert(count === 133784560);
+  assert(handTypeSum[0] === 0);
 
   console.log("\nEnumerated " + count + " hands in " + (endTime - startTime) + " milliseconds!\n");
 }
+
+assert.equal(evaluator.CARDS['as'], 52);
+assert.equal(evaluator.HANDTYPES.length, 10);
+assert.deepEqual(evaluator.eval([1, 2, 3, 4, 5]), {
+  handType: 8,
+  handName: 'four of a kind',
+  value: 32769,
+  handRank: 1
+});
 
 enumerateAllHands();
