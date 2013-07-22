@@ -97,15 +97,8 @@ fs.writeFileSync('./data/3CardHandRanks.dat', buffer);
 
 var ranks2 = fs.readFileSync('./data/3CardHandRanks.dat');
 
-console.log(buffer);
-console.log(ranks2);
-
 for (var i = 0; i < buffer.length; i++) {
   if (buffer[i] != ranks2[i]) {
     console.log('error');
   }
 }
-
-var val = ranks2.readUInt16LE(1092);
-
-console.log(val)
