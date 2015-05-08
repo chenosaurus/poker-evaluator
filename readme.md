@@ -3,7 +3,7 @@
 Poker hand evaluator using the Two Plus Two alogorithm and lookup table.
 The lookup table HandRanks.dat is included in the module.
 
-It is capable of evaluating 7, 5, and 3 card hands.  The highest hand possible in a 3 card hand is 3 of a kind, straights & flushes do not apply to 3 cards.
+It is capable of evaluating 7, 6, 5, and 3 card hands.  The highest hand possible in a 3 card hand is 3 of a kind, straights & flushes do not apply to 3 cards.
 
 Hands can be evaluated by comparing the handType then the handRank to determine the better hand.
 
@@ -35,8 +35,8 @@ PokerEvaluator.evalHand(["As", "Ac", "Ad", "5d", "5s"]);
 PokerEvaluator.evalHand(["As", "Ac", "Qs"]);
 
 //{ handType: 2,
-//  handRank: 441,
-//  value: 8633,
+//  handRank: 2761,
+//  value: 10953,
 //  handName: 'one pair' }
 
 ```
