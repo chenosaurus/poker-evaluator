@@ -11,16 +11,16 @@
       "email": "a@abrkn.com"
     }
   ],
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/chenosaurus/poker-evaluator.git"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
-    "test": "node test/speedtest.js"
+    "test": "jest && node test/speedtest.js"
   },
   "devDependencies": {
+    "jest": "^20.0.4"
   },
   "main": "./lib/PokerEvaluator.js",
   "engines": {
