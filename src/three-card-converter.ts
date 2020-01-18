@@ -4,6 +4,8 @@ import { CARDVALS, DECK } from './constants';
 class ThreeCardConverter {
 
   fillHand(cards: string[]): string[] {
+    cards = [...cards];
+
   	var cardsUsed = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
   	//convert each card to vals 0-12, strip suit

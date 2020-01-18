@@ -4,19 +4,22 @@
   "description": "A library to evaluate 3, 5 or 7 card poker hands (port of poker-evaluator js)",
   "main": "index.ts",
   "scripts": {
-    "start": "mkdir -pv dist/data && cp data/HandRanks.dat dist/data/HandRanks.dat && tsc && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.1.6",
-    "jest": "^24.9.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.4"
   },
   "engines": {
     "node": ">= 0.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0"
   }
 }

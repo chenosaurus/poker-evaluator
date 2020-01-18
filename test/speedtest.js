@@ -1,4 +1,4 @@
-var evaluator = require("..");
+var evaluator = require('../src/poker-evaluator');
 var path = require("path");
 var assert = require("assert");
 

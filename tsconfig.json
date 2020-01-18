@@ -1,13 +1,17 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "dist",
     "target": "es5",
     "module": "CommonJS",
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "noImplicitAny": false,
     "keyofStringsOnly": true,
     "lib": ["es2017", "dom"],
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
