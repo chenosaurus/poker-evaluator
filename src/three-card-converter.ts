@@ -1,16 +1,14 @@
-import { CARDVALS } from './constants/card-vals.const';
-import { CARDS } from './constants/cards.const';
+import { CARDVALS, DECK } from './constants';
 
-// TODO remove implicit any param types + add return types
 // TODO add tests
 class ThreeCardConverter {
 
-  fillHand(cards) {
+  fillHand(cards: string[]): string[] {
   	var cardsUsed = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
   	//convert each card to vals 0-12, strip suit
   	cards.forEach(function(card) {
-  		var i = Math.floor((CARDS[card.toLowerCase()]-1)/4);
+      var i = Math.floor((DECK[card.toLowerCase()]-1)/4);
   		cardsUsed[i] = 1;
   	}, this);
 

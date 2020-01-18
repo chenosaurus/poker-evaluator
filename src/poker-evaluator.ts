@@ -1,59 +1,62 @@
 import fs = require('fs');
 import path = require('path');
 
+import { DECK, HANDTYPES } from './constants';
 import ThreeCardConverter = require('./three-card-converter');
-import { HANDTYPES } from './constants/hand-types.const';
-import { CARDS } from './constants/cards.const';
-import { EvaluatedHand } from './types/evaluated-hand.interface';
-import { Deck } from './types/deck.interface';
+import { EvaluatedHand } from './types';
 
-export type Card = keyof Deck;
-
-// TODO add types from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/poker-evaluator/index.d.ts
-
-// TODO remove implicit any param types + add return types
 // TODO add tests
 export class PokerEvaluator {
   private ranks: Buffer;
   private threeCardConverter: ThreeCardConverter;
 
   constructor() {
-    var ranksFile = path.join(__dirname, '../data/HandRanks.dat');
-    this.ranks = fs.readFileSync(ranksFile);
+    this.ranks = fs.readFileSync(path.join(__dirname, '../data/HandRanks.dat'));
 
     this.threeCardConverter = new ThreeCardConverter();
   }
 
-  evalHand(cards: Card[]): EvaluatedHand {
+  evalHand(cards: string[]): EvaluatedHand {
     if (!this.ranks) {
-      throw new Error('HandRanks.dat not loaded');
+      throw new Error('HandRanks.dat not loaded.');
     }
 
-    if (cards.length != 7 && cards.length != 6 && cards.length != 5 && cards.length != 3) {
-      throw new Error('Hand must be 3, 5, 6, or 7 cards, but got ' + cards.length);
+    if (cards.length !== 7 && cards.length !== 6 && cards.length !== 5 && cards.length !== 3) {
+      throw new Error(`Hand must be 3, 5, 6, or 7 cards, but got ${cards.length}`);
     }
 
-    // Check every card is a string && in the deck
-    if (!cards.every(card => !!card && typeof card === 'string' && Object.keys(CARDS).includes(card.toLowerCase()))) {
-      throw new Error('Hand is not in expected string[] format. Please see README.md for correct usage.');
+    cards = this.convertInputToLowerCase(cards);
+    if (!this.deckContainsInput(cards)) {
+      throw new Error(`Please supply input as a valid string[] of "cards".
+        See src/constants/cards.const.ts for the deck's card values`
+      );
     }
 
-    // if 3 card hand, fill in to make 5 card
-    if (cards.length == 3) {
+    // If a 3 card hand, fill in to make 5 card
+    if (cards.length === 3) {
       cards = this.threeCardConverter.fillHand(cards);
     }
 
-    const cardValues = cards.map((card) => CARDS[card.toLowerCase()]);
-    return this.evaluate(cardValues);
+    return this.evaluate(cards);
   }
 
-  private evaluate(cards: number[]): EvaluatedHand {
-    var p = 53;
-    for (var i = 0; i < cards.length; i++) {
-      p = this.evalCard(p + cards[i]);
+  private convertInputToLowerCase(cards: string[]): string[] {
+    return cards.map(card => card && card.toLowerCase())
+  }
+
+  private deckContainsInput(cards: string[]): boolean {
+    return cards.every(card => Object.keys(DECK).includes(card));
+  }
+
+  private evaluate(cards: string[]): EvaluatedHand {
+    const cardValues = cards.map(card => DECK[card]);
+
+    let p = 53;
+    for (let i = 0; i < cardValues.length; i++) {
+      p = this.evalCard(p + cardValues[i]);
     }
 
-    if (cards.length == 5 || cards.length == 6) {
+    if (cardValues.length === 5 || cardValues.length === 6) {
       p = this.evalCard(p)
     }
 

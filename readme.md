@@ -19,23 +19,23 @@ This can evaluate about 22MM hands per second on a quad-core 2.7GHz Macbook Pro.
 ```ts
 import { PokerEvaluator } from './src/poker-evaluator';
 
-const pk = new PokerEvaluator();
+const pokerEvaluator = new PokerEvaluator();
 
-pk.evalHand(["As", "Ks", "Qs", "Js", "Ts", "3c", "5h"]);
+pokerEvaluator.evalHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h']);
 
 //{ handType: 9,
 //  handRank: 10,
 //  value: 36874,
 //  handName: 'straight flush' }
 
-pk.evalHand(["As", "Ac", "Ad", "5d", "5s"]);
+pokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5d', '5s']);
 
 //{ handType: 7,
 //  handRank: 148,
 //  value: 28820,
 //  handName: 'full house' }
 
-pk.evalHand(["As", "Ac", "Qs"]);
+pokerEvaluator.evalHand(['As', 'Ac', 'Qs']);
 
 //{ handType: 2,
 //  handRank: 2761,

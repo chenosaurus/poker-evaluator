@@ -1,4 +1,4 @@
-import { HandName } from '../types/hand-name.type';
+import { HandName } from '../types';
 
 export const HANDTYPES: HandName[] = [
   "invalid hand",

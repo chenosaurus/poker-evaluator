@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/node": "^13.1.6",
     "jest": "^24.9.0",
+    "tslib": "^1.10.0",
     "typescript": "^3.7.4"
   },
   "engines": {
