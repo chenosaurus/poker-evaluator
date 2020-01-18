@@ -1,0 +1,13 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es5",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "keyofStringsOnly": true,
+    "lib": ["es2017", "dom"],
+  }
+}
