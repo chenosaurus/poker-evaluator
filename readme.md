@@ -9,10 +9,11 @@ Hands can be evaluated by comparing the handType then the handRank to determine 
 
 This can evaluate about 22MM hands per second on a quad-core 2.7GHz Macbook Pro.  Run the speedtest.js file under /test to try it.
 
-<!-- TODO update when published on npm -->
-<!-- ## to install: -->
+## Installation
+`npm install`
 
-<!-- npm install poker-evaluator -->
+## Testing 
+`npm test`
 
 ## Usage:
 

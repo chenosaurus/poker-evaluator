@@ -3,26 +3,30 @@ import { PokerEvaluator } from './poker-evaluator';
 describe('PokerEvaluator', () => {
   const pokerEvaluator = new PokerEvaluator();
 
-  describe('invalid input', () => {
-    test('throws on 4 cards', () => {
+  describe('throws on invalid input when', () => {
+    it('4 cards', () => {
       expect(() => pokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5s'])).toThrow();
     });
 
-    test('throws on 8 cards', () => {
+    it('8 cards', () => {
       expect(() => pokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5s', 'Ad', 'Ah', '5c', '5s'])).toThrow();
     });
 
-    test('throws on invalid card input: non-card strings', () => {
+    it('non-card strings', () => {
       expect(() => pokerEvaluator.evalHand(['not', 'valid', 'cards'])).toThrow();
     });
 
-    // test('throws on invalid card input: undefined', () => {
-    //   expect(() => pokerEvaluator.evalHand([undefined, 'As', 'Ks'])).toThrow();
-    // });
+    it('includes empty strings', () => {
+      expect(() => pokerEvaluator.evalHand(['', '5d', '8c'])).toThrow();
+    });
+
+    it('includes undefined', () => {
+      expect(() => pokerEvaluator.evalHand([undefined, 'As', 'Ks'])).toThrow();
+    });
   });
 
   describe('7 cards', () => {
-    test('straight flush', () => {
+    it('straight flush', () => {
       expect(
         pokerEvaluator.evalHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h'])
       ).toEqual({
@@ -33,7 +37,7 @@ describe('PokerEvaluator', () => {
       });
     });
 
-    test('quads', () => {
+    it('quads', () => {
       expect(
         pokerEvaluator.evalHand(['As', 'Ac', 'Ah', 'Ad', '2c', '3c', '4c'])
       ).toEqual({
@@ -43,10 +47,32 @@ describe('PokerEvaluator', () => {
         handName: 'four of a kind'
       });
     });
+
+    it('flush', () => {
+      expect(
+        pokerEvaluator.evalHand(['8c', '2c', '3c', 'Tc', 'Jc', '4s', '4d'])
+      ).toEqual({
+        handType: 6,
+        handRank: 212,
+        value: 24788,
+        handName: 'flush',
+      });
+    });
+
+    it('straight', () => {
+      expect(
+        pokerEvaluator.evalHand(['Ah', '2d', '3c', '4h', '5d', 'Tc', 'Td'])
+      ).toEqual({
+        handType: 5,
+        handRank: 1,
+        value: 20481,
+        handName: 'straight',
+      });
+    });
   });
 
   describe('5 cards', () => {
-    test('full house', () => {
+    it('full house', () => {
       expect(pokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5d', '5s'])).toEqual({
         handType: 7,
         handRank: 148,
@@ -55,7 +81,7 @@ describe('PokerEvaluator', () => {
       });
     });
 
-    test('invalid hand', () => {
+    it('invalid hand', () => {
       expect(pokerEvaluator.evalHand(['2c', '2c', '2c', '2c', '2c'])).toEqual({
         handType: 0,
         handRank: 0,
@@ -66,7 +92,7 @@ describe('PokerEvaluator', () => {
   });
 
   describe('3 cards', () => {
-    test('one pair', () => {
+    it('one pair', () => {
       expect(pokerEvaluator.evalHand(['As', 'Ac', 'Qs'])).toEqual({
         handType: 2,
         handRank: 2761,
@@ -75,7 +101,16 @@ describe('PokerEvaluator', () => {
       });
     });
 
-    test('high card', () => {
+    it('trips', () => {
+      expect(pokerEvaluator.evalHand(['Qs', 'Qc', 'Qh'])).toEqual({
+        handType: 4,
+        handRank: 661,
+        value: 17045,
+        handName: 'three of a kind',
+      });
+    });
+
+    it('high card', () => {
       expect(pokerEvaluator.evalHand(['2c', '7d', '9h'])).toEqual({
         handType: 1,
         handRank: 24,
@@ -84,5 +119,4 @@ describe('PokerEvaluator', () => {
       });
     });
   });
-
 });

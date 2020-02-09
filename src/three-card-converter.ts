@@ -1,50 +1,53 @@
 import { CARDVALS, DECK } from './constants';
 
-// TODO add tests
+// The structure of this has remained largely unchanged from the original javascript
+// TODO refactor + split up to make more functional
 class ThreeCardConverter {
 
   fillHand(cards: string[]): string[] {
     cards = [...cards];
 
-  	var cardsUsed = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+    let cardsUsed = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-  	//convert each card to vals 0-12, strip suit
-  	cards.forEach(function(card) {
-      var i = Math.floor((DECK[card.toLowerCase()]-1)/4);
-  		cardsUsed[i] = 1;
-  	}, this);
+    // Convert each card to vals 0 - 12, strip suit
+    cards.forEach(card => {
+      const index = Math.floor((DECK[card.toLowerCase()] - 1) / 4);
+      cardsUsed[index] = 1;
+    });
 
-  	var toFill = 2; //need to fill 2 cards
+    let toFill = 2; // Need to fill 2 cards
 
-    //fill in <toFill> cards to complete 5 card hand
-  	for (var i = 0; i < 13; i++) {
-  	  if (toFill == 0) break; //done filling
-      //prevent adding a card to finish a straight
-      if (cardsUsed[i] == 0 && !this.makesStraight(cardsUsed,i)) {
+    // Fill in <toFill> cards to complete 5 card hand
+    for (let i = 0; i < cardsUsed.length - 1; i++) {
+      if (toFill === 0) break; // Done filling
+
+      // Prevent adding a card to finish a straight
+      if (cardsUsed[i] === 0 && !this.makesStraight(cardsUsed, i)) {
         cardsUsed[i] = 2;
         toFill--;
       }
-  	}
+    }
 
-    //fill dummy cards for lowest possible hand
-    var suit = ['s', 'd'];
-    for (var i = 0; i <= 13; i++) {
-      if (cardsUsed[i] == 2) {
-        var card = CARDVALS[i] + suit[0];
-        suit.splice(0, 1);
+    // Fill dummy cards for lowest possible hand
+    let suit = ['s', 'd'];
+    cardsUsed.forEach((cardUsedValue, i) => {
+      if (cardUsedValue === 2) {
+        const card = CARDVALS[i] + suit[0];
+        suit.splice(0, 1); // remove 's' from suit (so 'd' is suit[0] next time)
         cards.push(card);
       }
-    }
+    });
+
     return cards;
   }
 
-  private makesStraight(cardsUsed, rank) {
-    //add ace to bottom as well
-    var newCards = [cardsUsed[12]].concat(cardsUsed);
-    //add in new card (pushed up one by ace)
-    newCards[rank+1] = 2;
-    //determine if there are 5 cards in a row
-    return 5 === newCards.reduce(function(prev, next) {
+  private makesStraight(cardsUsed: number[], rank: number): boolean {
+    // Add ace to bottom as well
+    let newCards = [cardsUsed[cardsUsed.length - 1]].concat(cardsUsed);
+    // Add in new card (pushed up one by ace)
+    newCards[rank + 1] = 2;
+    // Determine if there are 5 cards in a row
+    return 5 === newCards.reduce((prev, next) => {
       if (prev === 5) {
         return 5;
       } else {
