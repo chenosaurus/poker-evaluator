@@ -10,7 +10,7 @@ export class PokerEvaluator {
   private threeCardConverter: ThreeCardConverter;
 
   constructor() {
-    this.ranks = fs.readFileSync(path.join(__dirname, '/data/HandRanks.dat'));
+    this.ranks = fs.readFileSync(path.join(__dirname, '../data/HandRanks.dat'));
 
     this.threeCardConverter = new ThreeCardConverter();
   }
