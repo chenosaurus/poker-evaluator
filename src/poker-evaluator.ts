@@ -5,7 +5,6 @@ import { DECK, HANDTYPES } from './constants';
 import ThreeCardConverter = require('./three-card-converter');
 import { EvaluatedHand } from './types';
 
-// TODO add tests
 export class PokerEvaluator {
   private ranks: Buffer;
   private threeCardConverter: ThreeCardConverter;
