@@ -1,5 +1,5 @@
-import fs = require('fs');
-import path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { DECK, HANDTYPES } from './constants';
 import ThreeCardConverter = require('./three-card-converter');
