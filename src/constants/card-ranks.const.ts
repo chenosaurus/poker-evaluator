@@ -1,6 +1,5 @@
-// TODO type
 // TODO maybe derive from cards or make enum
-export const CARDVALS = [
+export const CARD_RANKS = [
   '2',
   '3',
   '4',

@@ -1,4 +1,4 @@
-import { CARDVALS, DECK } from './constants';
+import { CARD_RANKS, DECK } from './constants';
 
 // The structure of this has remained largely unchanged from the original javascript
 // TODO refactor + split up to make more functional
@@ -32,7 +32,7 @@ class ThreeCardConverter {
     let suit = ['s', 'd'];
     cardsUsed.forEach((cardUsedValue, i) => {
       if (cardUsedValue === 2) {
-        const card = CARDVALS[i] + suit[0];
+        const card = CARD_RANKS[i] + suit[0];
         suit.splice(0, 1); // remove 's' from suit (so 'd' is suit[0] next time)
         cards.push(card);
       }

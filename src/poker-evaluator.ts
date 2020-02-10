@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { DECK, HANDTYPES } from './constants';
+import { DECK, HAND_TYPES } from './constants';
 import ThreeCardConverter = require('./three-card-converter');
 import { EvaluatedHand } from './types';
 
@@ -15,7 +15,7 @@ export class PokerEvaluator {
     this.threeCardConverter = new ThreeCardConverter();
   }
 
-  evalHand(cards: string[]): EvaluatedHand {
+  public evalHand(cards: string[]): EvaluatedHand {
     if (!this.ranks) {
       throw new Error('HandRanks.dat not loaded.');
     }
@@ -63,7 +63,7 @@ export class PokerEvaluator {
       handType: p >> 12,
       handRank: p & 0x00000fff,
       value: p,
-      handName: HANDTYPES[p >> 12]
+      handName: HAND_TYPES[p >> 12]
     }
   }
 
