@@ -26,7 +26,7 @@ export class PokerEvaluator {
     cards = this.convertInputToLowerCase(cards);
     if (!this.deckContainsInput(cards)) {
       throw new Error(`Please supply input as a valid string[] of "cards".
-        See src/constants/cards.const.ts for the deck's card values`
+        See the keys of src/constants/deck.const.ts for the deck's card values`
       );
     }
 
@@ -50,9 +50,11 @@ export class PokerEvaluator {
     const cardValues = cards.map(card => DECK[card]);
 
     let p = 53;
-    for (let i = 0; i < cardValues.length; i++) {
-      p = this.evalCard(p + cardValues[i]);
-    }
+    cardValues.forEach(cardValue => {
+      p = this.evalCard(p + cardValue);
+    });
+    // for (let i = 0; i < cardValues.length; i++) {
+    // }
 
     if (cardValues.length === 5 || cardValues.length === 6) {
       p = this.evalCard(p);
