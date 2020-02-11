@@ -11,7 +11,6 @@ export class PokerEvaluator {
 
   constructor() {
     this.ranks = fs.readFileSync(path.join(__dirname, '../data/HandRanks.dat'));
-
     this.threeCardConverter = new ThreeCardConverter();
   }
 
@@ -40,7 +39,7 @@ export class PokerEvaluator {
   }
 
   private convertInputToLowerCase(cards: string[]): string[] {
-    return cards.map(card => card && card.toLowerCase())
+    return cards.map(card => card && card.toLowerCase());
   }
 
   private deckContainsInput(cards: string[]): boolean {
@@ -56,7 +55,7 @@ export class PokerEvaluator {
     }
 
     if (cardValues.length === 5 || cardValues.length === 6) {
-      p = this.evalCard(p)
+      p = this.evalCard(p);
     }
 
     return {
