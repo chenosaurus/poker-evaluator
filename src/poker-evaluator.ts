@@ -50,11 +50,7 @@ export class PokerEvaluator {
     const cardValues = cards.map(card => DECK[card]);
 
     let p = 53;
-    cardValues.forEach(cardValue => {
-      p = this.evalCard(p + cardValue);
-    });
-    // for (let i = 0; i < cardValues.length; i++) {
-    // }
+    cardValues.forEach(cardValue => p = this.evalCard(p + cardValue));
 
     if (cardValues.length === 5 || cardValues.length === 6) {
       p = this.evalCard(p);
