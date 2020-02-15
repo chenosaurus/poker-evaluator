@@ -11,6 +11,7 @@
   "files": ["dist/**/*", "data/*"],
   "keywords": [],
   "author": "Rory McGuinness (https://github.com/rorymcgit)",
+  "homepage": "https://github.com/rorymcgit/poker-evaluator",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.1.6",
