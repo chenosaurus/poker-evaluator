@@ -2,13 +2,13 @@
   "name": "poker-evaluator-ts",
   "version": "1.0.15",
   "description": "A library to evaluate 3, 5 or 7 card poker hands (Typescript port of poker-evaluator)",
-  "main": "dist/poker-evaluator.js",
+  "main": "lib/poker-evaluator.js",
   "prepublish": "tsc",
   "scripts": {
     "test": "jest",
     "build": "tsc"
   },
-  "files": ["dist/**/*", "data/*"],
+  "files": ["lib/**/*", "data/*"],
   "keywords": [],
   "author": "Rory McGuinness (https://github.com/rorymcgit)",
   "homepage": "https://github.com/rorymcgit/poker-evaluator",
