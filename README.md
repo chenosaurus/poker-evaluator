@@ -1,6 +1,6 @@
 # Poker Hand Evaluator (TypeScript)
 
-This is a TypeScript port of the JS node module written by David Chen https://github.com/chenosaurus/poker-evaluator.
+This is a TypeScript port of the JS library written by David Chen https://github.com/chenosaurus/poker-evaluator.
 
 Poker hand evaluator using the Two Plus Two algorithm and lookup table.
 The lookup table HandRanks.dat is included in the module.
